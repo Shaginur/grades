@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parcel Sandbox</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="src/css/style.css" />
+  </head>
+
+  <body>
+    <nav class="navbar">
+      <h1 class="nav-brand">Classroom</h1>
+    </nav>
+
+    <main class="container">
+      <form id="grades-form">
+        <label class="label" for="component-name">Enter grade</label>
+        <input
+          title="Допустимы только числа"
+          autocomplete="off"
+          type="number"
+          min="0"
+          max="20"
+          class="input"
+          required
+          placeholder="Grade (0 and 20)"
+          id="your-grade"
+        />
+
+        <input id="btn" type="submit" class="btn btn-accent" value="Add" />
+      </form>
+
+      <table border="1" id="stats-table" class="table table-center">
+        <thead>
+          <tr>
+            <th width="25%">Number of tests taken</th>
+            <th width="25%">First submitted grade</th>
+            <th width="25%">Last submitted grade</th>
+            <th width="25%">Average grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Отрисовка элементов здесь  -->
+        </tbody>
+      </table>
+
+      <ul class="grades-list">
+        <!-- Отрисовка истории оценок здесь  -->
+      </ul>
+
+      <!-- <div class="notification"></div> -->
+    </main>
+    <script type="module" src="src/js/index.js"></script>
+
+    <!-- <script>
+      /*
+       * @param {array} grades
+       */
+      function getNumberOfGrades(grades) {
+        return grades.length;
+      }
+
+      /*
+       * @param {array} grades
+       */
+      function getFirstGrade(grades) {
+        return grades[0];
+      }
+
+      /*
+       * @param {array} grades
+       */
+      function getLastGrade(grades) {
+        return grades.at(-1);
+      }
+
+      function getAverageGrade(grades) {
+        let sum = 0;
+
+        grades.forEach((grade) => {
+          sum += grade;
+        });
+
+        const average = sum / grades?.length || 0;
+
+        return average;
+      }
+
+      // элемент формы
+      const gradesForm = document.querySelector("#grades-form");
+
+      // элемент ввода
+      const yourGrade = document.querySelector("#your-grade");
+      // содержимое таблицы
+      const tbody = document.querySelector("#stats-table tbody");
+
+      // история оценок
+      const gradesList = document.querySelector(".grades-list");
+
+      // массив оценок
+      const grades = [1, 2, 3, 4, 5];
+
+      /**
+       *
+       * @param {array} grades - массив оценок
+       */
+      function render(grades) {
+        tbody.innerHTML = `<tr>
+  <td>${getNumberOfGrades(grades) ?? "0"}</td>
+  <td>${getFirstGrade(grades) ?? "0"}</td>
+  <td>${getLastGrade(grades) ?? "0"}</td>
+  <td>${getAverageGrade(grades)}</td>
+  </tr>`;
+
+        showAndUpdateGradesHistory(grades); // показ истории оценок
+      }
+
+      gradesForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+
+        const newGrade = Number.parseInt(yourGrade.value, 10);
+
+        grades.push(newGrade);
+
+        showNotification("Новая оценка добавлена!");
+
+        yourGrade.value = "";
+
+        render(grades);
+      });
+
+      /**
+       *
+       * @param {string} message - текстовое сообщение
+       */
+      function showNotification(message) {
+        const element = document.createElement("div");
+
+        element.classList.add("notification", "is-show");
+
+        element.innerHTML = message;
+
+        document.body.appendChild(element);
+        // document.body.insertAdjacentHTML("beforeend", element);
+
+        setTimeout(() => {
+          element.classList.remove("is-show");
+        }, 2000);
+      }
+
+      function showAndUpdateGradesHistory(grades) {
+        gradesList.innerHTML = "";
+
+        grades.forEach(function (grade, index) {
+          const listItemHTML = `
+      <li class="grade" data-grade="${index}">
+        ${grade}
+        <button onclick="onEditHandler()" class="btn-edit">Edit</button>
+        <button onclick="onDeleteHandler()" class="btn-edit">Cancel</button>
+      </li>
+    `;
+
+          gradesList.insertAdjacentHTML("beforeend", listItemHTML);
+        });
+      }
+
+      // Остальная верстка 
+
+      function onEditHandler() {
+        console.log("hello1");
+      }
+
+      function onDeleteHandler() {
+        console.log("hello2");
+      }
+
+      // При использовании type="module" в теге <script>, функции, объявленные внутри модуля,
+      // не добавляются автоматически к глобальному объекту window. Из-за этого использование этих функций в атрибутах onclick
+      // в HTML может вызвать ошибку Uncaught ReferenceError, так как функции не доступны в глобальной области видимости.
+      // document.onEditHandler = function () {
+      //   console.log("hello1");
+      // };
+
+      // document.onDeleteHandler = function () {
+      //   console.log("hello2");
+      // };
+
+      render(grades); // первичная отрисовка
+    </script> -->
+  </body>
+</html>
